@@ -1,0 +1,60 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-error.log
+yarn-debug.log*
+
+# React Native
+# Generated files
+ios/Pods/
+android/.gradle/
+android/app/build/
+android/build/
+
+# Build artifacts
+build/
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata
+*.hmap
+*.ipa
+*.apk
+*.app
+
+# Miscellaneous
+.DS_Store
+.env
+*.lock
+*.log
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# IntelliJ
+*.iml
+out/
+.idea
+
+# ESLint cache
+.eslintcache
+
+# Metro bundler
+*.metro*
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Exclude from syncing to iCloud (macOS)
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
