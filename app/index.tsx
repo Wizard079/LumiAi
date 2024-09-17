@@ -1,44 +1,73 @@
-import Micebtn from "@/components/Micebtn";
-import VoiceVisualizer from "@/components/VoiceVisual";
-import { Text, View ,StyleSheet} from "react-native";
-import { useState } from "react";
-
+import { VoiceVisualizer } from "@/components";
+import { Text, View, StyleSheet, Pressable, Image } from "react-native";
+import CameraFeed from "./cameraFeed";
+import { useCaptureImage, useHandleSubmit, useVoiceRecognition } from "@/hooks";
 
 export default function Index() {
-
-  const [isAnimation, setisAnimation] = useState(false);
-  const animationTrigger = () => {
-    setisAnimation(prev => !prev)
-  }
+  const { state, startRecognizing, stopRecognizing, destroyRecognizer } = useVoiceRecognition();
+  const { fileUri, setfileUri } = useCaptureImage();
+  const { setState, handleSubmit } = useHandleSubmit(fileUri);
   return (
-    <View
-      style={
-      styles.container
-      }
-    >
-      <Text
-        style={styles.mainText}>
-        Hey it's Limo How can i help you today !
+    <View style={styles.container}>
+      <Text style={styles.mainText}>
+        Hey it's Lumi How can i help you today !
       </Text>
-      <VoiceVisualizer toggelPerameter={isAnimation} />
-      <View style={{alignItems:'center'}}>
-        <Micebtn giveOnPress={animationTrigger} />
+      <Text style={styles.mainText}>{state.results[0]}</Text>
+
+      <VoiceVisualizer toggelPerameter={state.isRecording} />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        <Pressable
+          style={styles.button}
+          onPressIn={() => {
+            startRecognizing();
+          }}
+          onPressOut={async () => {
+            stopRecognizing();
+            setState(state);
+            await handleSubmit();
+          }}
+        >
+          <Image
+            source={require("../assets/images/voice-recorder.png")}
+            style={{ height: 40, width: 40 }}
+          ></Image>
+        </Pressable>
+        <CameraFeed setfileUri={setfileUri} />
       </View>
     </View>
   );
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-      backgroundColor: '#1B1C1D',
-      flex: 1,
-      justifyContent: 'space-around'
+    backgroundColor: "#1B1C1D",
+    flex: 1,
+    justifyContent: "space-around",
   },
   mainText: {
-    color: 'white',
+    color: "white",
     fontSize: 30,
     fontWeight: "bold",
     padding: 10,
-    margin: 10
-  }
-})
+    margin: 10,
+  },
+  button: {
+    borderRadius: 100,
+    width: 80,
+    height: 80,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "yellow",
+    padding: 10,
+    shadowColor: "black",
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 30,
+  },
+});
