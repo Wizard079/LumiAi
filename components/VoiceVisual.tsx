@@ -1,21 +1,27 @@
-import React, { useEffect,useRef, useState } from 'react';
-import { View, Animated, StyleSheet, Dimensions } from 'react-native';
+import React, { useEffect, useRef, useState } from "react";
+import { View, Animated, StyleSheet, Dimensions } from "react-native";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
-// Dummy colors from the .aco file (replace with actual extracted colors)
-const colors = ['#010102', '#0e125b', '#502629', '#0b1296', '#2c36cd' , '#b53521' , '#a38e9a' , '#d5e2e0'];
+const colors = [
+  "#010102",
+  "#0e125b",
+  "#502629",
+  "#0b1296",
+  "#2c36cd",
+  "#b53521",
+  "#a38e9a",
+  "#d5e2e0",
+];
 
 type VisualPerameters = {
-    toggelPerameter : boolean
-}
-const VoiceVisualizer:React.FC<VisualPerameters> = ({toggelPerameter}) => {
+  toggelPerameter: boolean;
+};
+const VoiceVisualizer: React.FC<VisualPerameters> = ({ toggelPerameter }) => {
   const [animation] = useState(new Animated.Value(0));
   const loopRef = useRef<Animated.CompositeAnimation | null>(null); // Use ref to store loop reference
 
   useEffect(() => {
-    console.log(`VoiceVisual : the value of toggel is ${toggelPerameter}`);
-
     if (toggelPerameter) {
       // Start animation loop
       loopRef.current = Animated.loop(
@@ -76,9 +82,9 @@ const VoiceVisualizer:React.FC<VisualPerameters> = ({toggelPerameter}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     height: 200,
     padding: 10,
   },
