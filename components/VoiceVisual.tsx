@@ -55,6 +55,7 @@ const VoiceVisualizer: React.FC<VisualPerameters> = ({ toggelPerameter }) => {
       loopRef.current?.stop();
     };
   }, [toggelPerameter]);
+  const centerIndex = 4;
   return (
     <View style={styles.container}>
       {colors.map((color, index) => (
@@ -68,7 +69,12 @@ const VoiceVisualizer: React.FC<VisualPerameters> = ({ toggelPerameter }) => {
                 {
                   scaleY: animation.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [0.5, 2 + index / 4],
+                    outputRange: [
+                      0.5, // Minimum scale
+                      index <= centerIndex
+                        ? 1 + (index * 0.5) // Increase until center
+                        : 1 + ((colors.length - 1 - index) * 0.5), // Decrease after center
+                    ],
                   }),
                 },
               ],

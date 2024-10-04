@@ -6,7 +6,7 @@ import { useCaptureImage, useHandleSubmit, useVoiceRecognition } from "@/hooks";
 export default function Index() {
   const { state, startRecognizing, stopRecognizing, destroyRecognizer } = useVoiceRecognition();
   const { fileUri, setfileUri } = useCaptureImage();
-  const { setState, handleSubmit } = useHandleSubmit(fileUri);
+  const {handleSubmit } = useHandleSubmit(fileUri);
   return (
     <View style={styles.container}>
       <Text style={styles.mainText}>
@@ -28,9 +28,9 @@ export default function Index() {
             startRecognizing();
           }}
           onPressOut={async () => {
+            console.log("seeting the state as ", JSON.stringify(state))
             stopRecognizing();
-            setState(state);
-            await handleSubmit();
+            await handleSubmit(state);
           }}
         >
           <Image

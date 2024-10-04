@@ -1,4 +1,3 @@
-import { useState } from "react";
 import imageDescription from "@/api/imageDescription";
 import getModel from "@/api/setupApi";
 import sendToBackend from "@/api/sendToBackend";
@@ -16,19 +15,7 @@ interface IState {
 }
 
 const useHandleSubmit = (fileUri: string) => {
-  const [state, setState] = useState<IState>({
-    recognized: "",
-    pitch: "",
-    error: "",
-    end: "",
-    started: "",
-    results: [],
-    partialResults: [],
-    isRecording: false,
-  });
-
-  const handleSubmit = async () => {
-    console.log("inside the handle submit");
+  const handleSubmit = async (state: IState) => {
     console.log(state.results[0]);
     if (!state.results[0]) return;
     const model = getModel();
@@ -67,7 +54,7 @@ const useHandleSubmit = (fileUri: string) => {
     }
   };
 
-  return { state, setState, handleSubmit };
+  return { handleSubmit };
 };
 
 export default useHandleSubmit;
