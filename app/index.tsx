@@ -4,9 +4,9 @@ import CameraFeed from "./cameraFeed";
 import { useCaptureImage, useHandleSubmit, useVoiceRecognition } from "@/hooks";
 
 export default function Index() {
-  const { state, startRecognizing, stopRecognizing, destroyRecognizer } = useVoiceRecognition();
+  const { state, startRecognizing, stopRecognizing } = useVoiceRecognition();
   const { fileUri, setfileUri } = useCaptureImage();
-  const {handleSubmit } = useHandleSubmit(fileUri);
+  const { handleSubmit } = useHandleSubmit(fileUri);
   return (
     <View style={styles.container}>
       <Text style={styles.mainText}>
@@ -28,7 +28,7 @@ export default function Index() {
             startRecognizing();
           }}
           onPressOut={async () => {
-            console.log("seeting the state as ", JSON.stringify(state))
+            console.log("setting the state as ", JSON.stringify(state))
             stopRecognizing();
             await handleSubmit(state);
           }}
@@ -69,5 +69,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 10,
     elevation: 30,
+    marginRight: 150,
+    marginLeft: 30
   },
 });

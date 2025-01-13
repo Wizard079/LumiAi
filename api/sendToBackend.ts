@@ -21,7 +21,7 @@ const sendToBackend = async (fileUri: string, desc: string) => {
           response
       );
     } else {
-      console.error("check out .env file for enpoints");
+      console.error("check out .env file for endpoints");
     }
   } catch (error) {
     console.log(error);

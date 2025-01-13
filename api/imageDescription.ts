@@ -27,7 +27,7 @@ async function imageDescription(imgUri: string, descriptionType: string) {
       speakFunction(content);
     } else if (descriptionType.includes("SCENE_UNDERSTANDING")) {
       const model = getModel();
-      const prompt = "explain this secene to me";
+      const prompt = "explain this scene to me";
       const result = await model.generateContent([prompt, image]);
       const content = result.response.text();
       speakFunction(content);

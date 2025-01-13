@@ -24,7 +24,7 @@ function CameraFeed({ setfileUri }: CameraFeedProps) {
   };
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} ref={ref} />
+      <CameraView style={styles.camera} ref={ref} flash="auto" animateShutter={false}/>
       <TouchableOpacity onPress={take_snapshot}>
         <Image
           source={require("@/assets/images/camera.png")}

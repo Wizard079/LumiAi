@@ -5,9 +5,9 @@ let model: GenerativeModel;
 function getModel() {
   if (!model) {
     console.log("connecting to api");
-    genAI = new GoogleGenerativeAI(process.env.API_KEY_GEMINI!);
+    genAI = new GoogleGenerativeAI("AIzaSyD_cAQJJwIE3H-dY5S0MELknyxB1o2Hez8");
     model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    console.log("connection made sucseec");
+    console.log("connection made success");
   }
   console.log("returning model");
   return model;

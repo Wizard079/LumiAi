@@ -6,7 +6,7 @@ import Voice, {
 
 interface IState {
   recognized: string;
-  pitch: string;
+  pitch: number;
   error: string;
   end: string;
   started: string;
@@ -18,7 +18,7 @@ interface IState {
 export const useVoiceRecognition = () => {
   const [state, setState] = useState<IState>({
     recognized: "",
-    pitch: "",
+    pitch: 0,
     error: "",
     end: "",
     started: "",
@@ -30,7 +30,7 @@ export const useVoiceRecognition = () => {
   const resetState = useCallback(() => {
     setState({
       recognized: "",
-      pitch: "",
+      pitch: 0,
       error: "",
       started: "",
       results: [],

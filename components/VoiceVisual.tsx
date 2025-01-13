@@ -28,12 +28,12 @@ const VoiceVisualizer: React.FC<VisualPerameters> = ({ toggelPerameter }) => {
         Animated.sequence([
           Animated.timing(animation, {
             toValue: 1,
-            duration: 500,
+            duration: 400,
             useNativeDriver: true,
           }),
           Animated.timing(animation, {
             toValue: 0,
-            duration: 500,
+            duration: 400,
             useNativeDriver: true,
           }),
         ])

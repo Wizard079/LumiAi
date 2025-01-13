@@ -5,7 +5,7 @@ import { speakFunction } from "@/utils";
 
 interface IState {
   recognized: string;
-  pitch: string;
+  pitch: number;
   error: string;
   end: string;
   started: string;
@@ -53,7 +53,6 @@ const useHandleSubmit = (fileUri: string) => {
       );
     }
   };
-
   return { handleSubmit };
 };
 
